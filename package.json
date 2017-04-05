@@ -29,8 +29,9 @@
   },
   "homepage": "http://carohadad.github.io/tic-tac-toe-react",
   "jest": {
-     "moduleNameMapper": {
-       "\\.(css|less)$": "<rootDir>/test/__mocks__/styleMock.js"
-     }
-   }
+    "moduleNameMapper": {
+      "\\.(css|less)$": "<rootDir>/test/__mocks__/styleMock.js"
+    },
+    "collectCoverage": true
+  }
 }

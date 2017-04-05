@@ -142,6 +142,7 @@ test('Should be able to start a new round when game finishes', () =>{
   // X plays : X wins
   game.find('button#8').simulate('click');
 
+  // Restart!
   game.find('button#next-round').simulate('click');
 
   // O can play
