@@ -2,9 +2,9 @@ import React from 'react';
 import './Game.css';
 
 export class Square extends React.Component {
-  render(i) {
+  render() {
     return (
-      <button className="square" onClick={() => this.props.onClick()}>
+      <button className="square" id={this.props.index} onClick={() => this.props.onClick()}>
         { this.props.value }
       </button>
     );
@@ -14,7 +14,7 @@ export class Square extends React.Component {
 export class Board extends React.Component {
 
   renderSquare(i) {
-    return <Square value={this.props.squares[i]} onClick={() => this.props.handleClick(i)}/>;
+    return <Square value={this.props.squares[i]} onClick={() => this.props.handleClick(i)} index={i}/>;
   }
 
   render() {
@@ -56,7 +56,7 @@ class Game extends React.Component {
 
   handleClick(i) {
     if (this.state.winner) {
-      this.setState({errorMessage: "Game Finished"});
+      this.setState({errorMessage: "Game finished"});
       return
     }
 
@@ -140,8 +140,8 @@ class Game extends React.Component {
       <div className="game">
         <div className="round">
           <div className="messages">
-            <div className="winner"> Winner: {this.state.winner}</div>
-            <div className="state"> Next player: {this.state.whoMoves}</div>
+            <div className="winner">Winner: {this.state.winner}</div>
+            <div className="nextPlayer">Next player: {this.state.whoMoves}</div>
           </div>
           <div className="game-board">
             <Board squares={this.state.squares} handleClick={(i)=> this.handleClick(i)}/>
@@ -150,12 +150,12 @@ class Game extends React.Component {
         </div>
 
         <div className="game-info">
-          <div>Games played so far: {this.state.numberOfRounds}</div>
+          <div className="games-played">Games played so far: {this.state.numberOfRounds}</div>
           <ul>
-            <li>X Won Count: {this.state.xWonCount}</li>
-            <li>O Won Count: {this.state.oWonCount}</li>
+            <li className="x-won-count">X Won Count: {this.state.xWonCount}</li>
+            <li className="o-won-count">O Won Count: {this.state.oWonCount}</li>
           </ul>
-          <button onClick={()=> this.nextRound()}>
+          <button id="next-round" onClick={()=> this.nextRound()}>
             Play Another Round
           </button>
         </div>
