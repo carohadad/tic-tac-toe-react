@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/carohadad/tic-tac-toe-react.svg?branch=master)](https://travis-ci.org/carohadad/tic-tac-toe-react)
+[![Test Coverage](https://codeclimate.com/github/carohadad/tic-tac-toe-react/badges/coverage.svg)](https://codeclimate.com/github/carohadad/tic-tac-toe-react/coverage)
 
 This project is a Tic Tac Toe Game using React.js
 
