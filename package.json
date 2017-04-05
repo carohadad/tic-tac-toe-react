@@ -16,7 +16,8 @@
     "react-addons-test-utils": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-scripts": "0.9.5",
-    "react-test-renderer": "^15.4.2"
+    "react-test-renderer": "^15.4.2",
+    "sinon": "2.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
