@@ -1,7 +1,7 @@
 import React from 'react';
 import './Game.css';
 
-class Square extends React.Component {
+export class Square extends React.Component {
   render(i) {
     return (
       <button className="square" onClick={() => this.props.onClick()}>
@@ -11,7 +11,7 @@ class Square extends React.Component {
   }
 }
 
-class Board extends React.Component {
+export class Board extends React.Component {
 
   renderSquare(i) {
     return <Square value={this.props.squares[i]} onClick={() => this.props.handleClick(i)}/>;
@@ -90,7 +90,7 @@ class Game extends React.Component {
 
     if (winner === "X") {
       newXWonCount +=1;
-    } 
+    }
 
     if (winner === "O"){
       newOWonCount +=1;
@@ -100,7 +100,7 @@ class Game extends React.Component {
 
     this.setState({
       numberOfRounds: nextRound,
-      xWonCount: newXWonCount, 
+      xWonCount: newXWonCount,
       oWonCount: newOWonCount,
       whoMoves: (nextRound % 2 === 0) ? "X" : "O",
       winner: winner
@@ -144,7 +144,7 @@ class Game extends React.Component {
             <div className="state"> Next player: {this.state.whoMoves}</div>
           </div>
           <div className="game-board">
-            <Board whoMoves={this.state.whoMoves} squares={this.state.squares} handleClick={(i)=> this.handleClick(i)}/>
+            <Board squares={this.state.squares} handleClick={(i)=> this.handleClick(i)}/>
           </div>
           <div className="errorMessage">{this.state.errorMessage}</div>
         </div>
