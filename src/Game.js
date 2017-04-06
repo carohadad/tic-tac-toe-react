@@ -136,24 +136,27 @@ class Game extends React.Component {
   }
 
   render() {
+
+    let {numberOfRounds, xWonCount, oWonCount, whoMoves, squares, errorMessage, winner} = this.state
+
     return (
       <div className="game">
         <div className="round">
           <div className="messages">
-            <div className="winner">Winner: {this.state.winner}</div>
-            <div className="nextPlayer">Next player: {this.state.whoMoves}</div>
+            <div className="winner">Winner: {winner}</div>
+            <div className="nextPlayer">Next player: {whoMoves}</div>
           </div>
           <div className="game-board">
-            <Board squares={this.state.squares} handleClick={(i)=> this.handleClick(i)}/>
+            <Board squares={squares} handleClick={(i)=> this.handleClick(i)}/>
           </div>
-          <div className="errorMessage">{this.state.errorMessage}</div>
+          <div className="errorMessage">{errorMessage}</div>
         </div>
 
         <div className="game-info">
-          <div className="games-played">Games played so far: {this.state.numberOfRounds}</div>
+          <div className="games-played">Games played so far: {numberOfRounds}</div>
           <ul>
-            <li className="x-won-count">X Won Count: {this.state.xWonCount}</li>
-            <li className="o-won-count">O Won Count: {this.state.oWonCount}</li>
+            <li className="x-won-count">X Won Count: {xWonCount}</li>
+            <li className="o-won-count">O Won Count: {oWonCount}</li>
           </ul>
           <button id="next-round" onClick={()=> this.nextRound()}>
             Play Another Round
