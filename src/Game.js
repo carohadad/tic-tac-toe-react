@@ -40,15 +40,16 @@ export class Board extends React.Component {
   }
 }
 
+
 class Game extends React.Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
       numberOfRounds: 0,
       xWonCount: 0,
       oWonCount: 0,
       whoMoves: "X",
-      squares: Array(9).fill(null),
+      squares: props.squares,
       errorMessage: null,
       winner: null
     };
@@ -166,5 +167,7 @@ class Game extends React.Component {
     );
   }
 }
+Game.defaultProps = { squares: Array(9).fill(null) };
+
 
 export default Game;

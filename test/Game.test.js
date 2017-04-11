@@ -57,11 +57,13 @@ test('Can move to a position', () =>{
 
 });
 
-test('Cannot move to a position', () =>{
+test('Cannot move to a taken position', () =>{
+  var boardValues = Array(9).fill(null)
+  boardValues[4] = "X"
+
   const game = mount(
-    <Game />
+    <Game squares={boardValues}/>
   );
-  game.find('button#4').simulate('click');
   game.find('button#4').simulate('click');
 
   expect(game.find('.errorMessage').text()).toEqual("Position taken");
@@ -69,24 +71,19 @@ test('Cannot move to a position', () =>{
 });
 
 
-test('Cannot move to a position', () =>{
+test('Players can win the game', () =>{
+
+  // X has to values in diagonal
+  var boardValues =
+    ["X", "O", "O",
+    null, "X", null,
+    null, null, null];
+
   const game = mount(
-    <Game />
+    <Game squares={boardValues}/>
   );
 
-  // X plays
-  game.find('button#4').simulate('click');
-
-  // O plays
-  game.find('button#1').simulate('click');
-
-  // X plays
-  game.find('button#0').simulate('click');
-
-  // O plays
-  game.find('button#2').simulate('click');
-
-  // X plays : X wins
+  // X plays and wins the game!
   game.find('button#8').simulate('click');
 
   expect(game.find('.winner').text()).toEqual("Winner: X");
@@ -96,23 +93,16 @@ test('Cannot move to a position', () =>{
 });
 
 test('Cannot play if the game is finished', () =>{
+  var boardValues =
+    ["X", "O", "O",
+    null, "X", null,
+    null, null, null];
+
   const game = mount(
-    <Game />
+    <Game squares={boardValues}/>
   );
 
-  // X plays
-  game.find('button#4').simulate('click');
-
-  // O plays
-  game.find('button#1').simulate('click');
-
-  // X plays
-  game.find('button#0').simulate('click');
-
-  // O plays
-  game.find('button#2').simulate('click');
-
-  // X plays : X wins
+  // X plays and wins the game!
   game.find('button#8').simulate('click');
 
   // O tries to play
@@ -122,22 +112,33 @@ test('Cannot play if the game is finished', () =>{
   expect(game.find('button#7').text()).toEqual('');
 });
 
-test('Should be able to start a new round when game finishes', () =>{
+test('If all the board is completed then it\'s a tie', () =>{
+  var boardValues =
+    ["X", "X", "O",
+    "O", "O", "X",
+    "X", "O", null];
+
   const game = mount(
-    <Game />
+    <Game squares={boardValues}/>
   );
 
-  // X plays
-  game.find('button#4').simulate('click');
+  // X plays and it's a tie!
+  game.find('button#8').simulate('click');
 
-  // O plays
-  game.find('button#1').simulate('click');
+    expect(game.find('.winner').text()).toEqual("Winner: tie");
 
-  // X plays
-  game.find('button#0').simulate('click');
+});
 
-  // O plays
-  game.find('button#2').simulate('click');
+test('Should be able to start a new round when game finishes', () =>{
+
+  var boardValues =
+    ["X", "O", "O",
+    null, "X", null,
+    null, null, null];
+
+  const game = mount(
+    <Game squares={boardValues}/>
+  );
 
   // X plays : X wins
   game.find('button#8').simulate('click');
